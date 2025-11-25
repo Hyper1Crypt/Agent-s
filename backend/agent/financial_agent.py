@@ -43,7 +43,7 @@ class FinancialAgent:
             if not api_key:
                 raise ValueError("GROQ_API_KEY non trovata. Ottienila da: https://console.groq.com/keys")
             self.llm = ChatGroq(
-                model="llama-3.1-70b-versatile",  # Fast and free model
+                model="llama-3.3-70b-versatile",  # Updated to current Groq model (llama-3.1-70b-versatile was decommissioned)
                 temperature=0.3,
                 groq_api_key=api_key
             )
