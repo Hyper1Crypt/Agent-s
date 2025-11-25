@@ -40,8 +40,14 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Initialize agent
-agent = FinancialAgent()
+# Initialize agent (lazy loading to avoid errors at startup)
+agent = None
+
+def get_agent():
+    global agent
+    if agent is None:
+        agent = FinancialAgent()
+    return agent
 
 class AnalysisRequest(BaseModel):
     query: str
@@ -70,7 +76,8 @@ async def analyze(request: AnalysisRequest):
     Main endpoint for financial analysis queries
     """
     try:
-        result = await agent.analyze(request.query, request.context)
+        agent_instance = get_agent()
+        result = await agent_instance.analyze(request.query, request.context)
         return AnalysisResponse(
             report=result.get("report", ""),
             sources=result.get("sources", []),
