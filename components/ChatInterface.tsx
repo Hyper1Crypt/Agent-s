@@ -65,9 +65,9 @@ export default function ChatInterface({ onAnalysisComplete, setIsLoading, isLoad
           <div className="text-center text-slate-400 py-8">
             <p className="mb-2">Esempi di domande:</p>
             <ul className="text-sm space-y-1 text-left max-w-md mx-auto">
-              <li>• &quot;Analizza BTCUSDT per questa settimana considerando macro, funding e news critiche&quot;</li>
-              <li>• &quot;Qual è il sentiment attuale del mercato crypto?&quot;</li>
-              <li>• &quot;Analizza il report macro di questa settimana&quot;</li>
+              <li>• Analizza BTCUSDT per questa settimana considerando macro, funding e news critiche</li>
+              <li>• Qual è il sentiment attuale del mercato crypto?</li>
+              <li>• Analizza il report macro di questa settimana</li>
             </ul>
           </div>
         )}
