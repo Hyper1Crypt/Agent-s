@@ -43,9 +43,10 @@ class FinancialAgent:
             if not api_key:
                 raise ValueError("GROQ_API_KEY non trovata. Ottienila da: https://console.groq.com/keys")
             self.llm = ChatGroq(
-                model="llama-3.3-70b-versatile",  # Updated to current Groq model (llama-3.1-70b-versatile was decommissioned)
+                model="llama-3.1-8b-instant",  # Faster and more reliable for function calling
                 temperature=0.3,
-                groq_api_key=api_key
+                groq_api_key=api_key,
+                max_tokens=4096  # Increase token limit for better responses
             )
         else:
             # Default: OpenAI
@@ -67,9 +68,14 @@ class FinancialAgent:
             DatabaseTool().get_tool(),
         ]
         
-        # Create agent prompt
-        self.prompt = ChatPromptTemplate.from_messages([
-            ("system", """Sei un assistente finanziario esperto specializzato in analisi crypto e macroeconomica.
+        # Create agent prompt (simplified for Groq compatibility)
+        if llm_provider == "groq":
+            # Simpler prompt for Groq to avoid function calling issues
+            system_prompt = """Sei un assistente finanziario esperto. Analizza dati crypto e macroeconomici.
+Usa i tools disponibili per raccogliere informazioni, poi genera un report chiaro e completo.
+Struttura: Contesto macro, Dati mercato, News critiche, Analisi sentiment, Conclusione operativa."""
+        else:
+            system_prompt = """Sei un assistente finanziario esperto specializzato in analisi crypto e macroeconomica.
             
 Il tuo compito è:
 1. Raccogliere informazioni da fonti multiple (PDF, news, dati crypto, calendario economico)
@@ -85,7 +91,10 @@ Struttura del report:
 - Rischi e opportunità
 - Conclusione operativa (azione consigliata + motivazione)
 
-Sii preciso, obiettivo e basati sempre sui dati raccolti."""),
+Sii preciso, obiettivo e basati sempre sui dati raccolti."""
+        
+        self.prompt = ChatPromptTemplate.from_messages([
+            ("system", system_prompt),
             MessagesPlaceholder(variable_name="chat_history"),
             ("human", "{input}"),
             MessagesPlaceholder(variable_name="agent_scratchpad"),
@@ -102,8 +111,10 @@ Sii preciso, obiettivo e basati sempre sui dati raccolti."""),
                 agent=self.agent,
                 tools=self.tools,
                 verbose=True,
-                max_iterations=15,
-                handle_parsing_errors=True
+                max_iterations=10 if llm_provider == "groq" else 15,  # Fewer iterations for Groq
+                handle_parsing_errors="Check your output and make sure it conforms!",
+                return_intermediate_steps=False,
+                max_execution_time=300  # 5 minutes timeout
             )
         except Exception as e:
             # Fallback for older LangChain versions
