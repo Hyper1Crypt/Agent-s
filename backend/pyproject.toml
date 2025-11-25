@@ -1,0 +1,10 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lab-trading-backend"
+version = "1.0.0"
+description = "AI Financial Analyst Backend"
+requires-python = ">=3.10"
+

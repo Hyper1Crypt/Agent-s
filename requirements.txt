@@ -1,0 +1,44 @@
+# Core LangChain
+langchain==0.1.0
+langchain-openai>=0.1.0
+langchain-community==0.0.10
+
+# LLM Providers
+openai>=1.0.0
+
+# Web Framework
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+pydantic>=2.6.0
+python-multipart==0.0.6
+
+# HTTP Client
+httpx==0.25.2
+requests==2.31.0
+
+# PDF Processing
+pypdf==3.17.4
+pdfplumber==0.10.3
+
+# Web Scraping
+beautifulsoup4==4.12.2
+# lxml==4.9.3  # Optional, has Python 3.13 compatibility issues - using html.parser instead
+
+# Database
+sqlalchemy==2.0.23
+# sqlite3 is part of Python standard library, no need to install
+
+# Environment
+python-dotenv==1.0.0
+
+# Utilities
+python-dateutil==2.8.2
+# pandas==2.1.4  # Optional, removed due to Python 3.13 compatibility
+# numpy==1.26.2  # Optional, only needed if using pandas
+
+# Crypto APIs
+ccxt==4.1.50
+
+# Async support
+aiohttp==3.9.1
+
