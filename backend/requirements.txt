@@ -3,8 +3,10 @@ langchain>=0.2.0
 langchain-openai>=0.1.0
 langchain-community>=0.2.0
 
-# LLM Providers
+# LLM Providers (choose one or more)
 openai>=1.0.0
+langchain-google-genai>=1.0.0  # For Google Gemini (FREE)
+langchain-groq>=0.1.0  # For Groq (FREE tier)
 
 # Web Framework
 fastapi==0.104.1

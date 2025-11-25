@@ -22,15 +22,41 @@ class FinancialAgent:
     """
     
     def __init__(self):
-        api_key = os.getenv("OPENAI_API_KEY")
-        if not api_key:
-            raise ValueError("OPENAI_API_KEY non trovata nelle variabili ambiente")
+        # Support multiple LLM providers
+        llm_provider = os.getenv("LLM_PROVIDER", "openai").lower()
         
-        self.llm = ChatOpenAI(
-            model="gpt-4-turbo",  # Stable GPT-4 Turbo model (gpt-4-turbo-preview is deprecated)
-            temperature=0.3,
-            api_key=api_key
-        )
+        if llm_provider == "gemini":
+            # Google Gemini (FREE tier available)
+            from langchain_google_genai import ChatGoogleGenerativeAI
+            api_key = os.getenv("GOOGLE_API_KEY")
+            if not api_key:
+                raise ValueError("GOOGLE_API_KEY non trovata. Ottienila da: https://makersuite.google.com/app/apikey")
+            self.llm = ChatGoogleGenerativeAI(
+                model="gemini-pro",
+                temperature=0.3,
+                google_api_key=api_key
+            )
+        elif llm_provider == "groq":
+            # Groq (FREE tier, very fast)
+            from langchain_groq import ChatGroq
+            api_key = os.getenv("GROQ_API_KEY")
+            if not api_key:
+                raise ValueError("GROQ_API_KEY non trovata. Ottienila da: https://console.groq.com/keys")
+            self.llm = ChatGroq(
+                model="llama-3.1-70b-versatile",  # or "mixtral-8x7b-32768"
+                temperature=0.3,
+                groq_api_key=api_key
+            )
+        else:
+            # Default: OpenAI
+            api_key = os.getenv("OPENAI_API_KEY")
+            if not api_key:
+                raise ValueError("OPENAI_API_KEY non trovata nelle variabili ambiente")
+            self.llm = ChatOpenAI(
+                model="gpt-3.5-turbo",  # More affordable than gpt-4-turbo
+                temperature=0.3,
+                api_key=api_key
+            )
         
         # Initialize tools
         self.tools = [
