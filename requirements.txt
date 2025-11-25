@@ -42,3 +42,5 @@ ccxt==4.1.50
 # Async support
 aiohttp==3.9.1
 
+setuptools>=67
+
