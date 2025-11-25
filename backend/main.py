@@ -24,19 +24,17 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# CORS middleware - Allow all origins in production (you can restrict this)
-cors_origins = [
-    "http://localhost:3000",
-    "http://localhost:3001",
-]
+# CORS middleware - Allow all origins (restrict in production if needed)
+# In production, you can replace ["*"] with specific domains like:
+# ["https://your-app.vercel.app", "https://your-domain.com"]
+cors_origins = ["*"]  # Allow all origins for now
 
-# Add Vercel preview URLs dynamically
-if os.getenv("VERCEL"):
-    cors_origins.append("*")  # Allow all origins in Vercel
+# For local development, you can use:
+# cors_origins = ["http://localhost:3000", "http://localhost:3001"]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=cors_origins if "*" not in cors_origins else ["*"],
+    allow_origins=cors_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
