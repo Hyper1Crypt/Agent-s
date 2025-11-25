@@ -1,28 +1,41 @@
-# dependencies
-/node_modules
-/.pydeps
+# ============================================
+# Node.js / Frontend (Next.js)
+# ============================================
 
-# testing
+# Dependencies
+node_modules/
+/.pydeps
+jspm_packages/
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# Testing
 /coverage
 *.lcov
 .nyc_output
 
-# next.js
+# Next.js
 /.next/
 /out/
+.next
+out
 
-# production
+# Production builds
 /build
+dist
+build/
 
-# misc
-.DS_Store
-*.pem
-
-# debug
+# Debug logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
+pnpm-debug.log*
 
 # Diagnostic reports
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
@@ -33,32 +46,10 @@ pids
 *.seed
 *.pid.lock
 
-# Directory for instrumented libs
-lib-cov
-
-# Grunt intermediate storage
-.grunt
-
-# Bower dependency directory
-bower_components
-
-# node-waf configuration
-.lock-wscript
-
-# Compiled binary addons
-build/Release
-
-# Dependency directories
-node_modules/
-jspm_packages/
-
-# Snowpack dependency directory
-web_modules/
-
-# TypeScript cache
+# TypeScript
 *.tsbuildinfo
 
-# Optional npm cache directory
+# Optional npm cache
 .npm
 
 # Optional eslint cache
@@ -76,96 +67,195 @@ web_modules/
 # Yarn Integrity file
 .yarn-integrity
 
-# dotenv environment variable files
+# Environment variables
 .env
 .env.*
-!.env.example
 .env*.local
+!.env.example
 
-# parcel-bundler cache
+# Cache directories
 .cache
 .parcel-cache
-
-# Nuxt.js build / generate output
-.nuxt
-dist
-
-# Gatsby files
-.cache/
-
-# vuepress build output
-.vuepress/dist
-
-# vuepress v2.x temp and cache directory
 .temp
 
-# Sveltekit cache directory
-.svelte-kit/
-
-# vitepress build output
-**/.vitepress/dist
-
-# vitepress cache directory
-**/.vitepress/cache
-
-# Docusaurus cache and generated files
-.docusaurus
-
-# Serverless directories
-.serverless/
-
-# FuseBox cache
-.fusebox/
-
-# DynamoDB Local files
-.dynamodb/
-
-# Firebase cache directory
-.firebase/
-
-# TernJS port file
-.tern-port
-
-# Stores VSCode versions used for testing VSCode extensions
-.vscode-test
-
-# yarn v3
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/sdks
-!.yarn/versions
-
-# Vite logs files
-vite.config.js.timestamp-*
-vite.config.ts.timestamp-*
-
-# vercel
+# Vercel
 .vercel
 
-# python
+# ============================================
+# Python / Backend
+# ============================================
+
+# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
 *.so
+
+# C extensions
+*.so
+
+# Distribution / packaging
 .Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# Virtual environments
 env/
 venv/
 ENV/
+env.bak/
+venv.bak/
 .venv
-*.egg-info/
-dist/
-build/
 
-# database
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# pytype static type analyzer
+.pytype/
+
+# Cython debug symbols
+cython_debug/
+
+# ============================================
+# Database
+# ============================================
+
 *.db
 *.sqlite
 *.sqlite3
+*.db-journal
 
-# IDE
+# ============================================
+# IDE / Editors
+# ============================================
+
+# VSCode
 .vscode/
+.vscode-test
+*.code-workspace
+
+# IntelliJ IDEA / PyCharm
 .idea/
+*.iml
+*.iws
+*.ipr
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
 *.swp
 *.swo
+*~
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+
+# Thumbnails
+.Thumbs.db
+
+# ============================================
+# Other
+# ============================================
+
+# Logs
+logs/
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Lock files (keep package-lock.json but ignore others if needed)
+# package-lock.json  # Uncomment if you want to ignore it
