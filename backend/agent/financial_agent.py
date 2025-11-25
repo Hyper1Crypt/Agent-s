@@ -27,7 +27,7 @@ class FinancialAgent:
             raise ValueError("OPENAI_API_KEY non trovata nelle variabili ambiente")
         
         self.llm = ChatOpenAI(
-            model="gpt-4o",  # Updated to current GPT-4 model (gpt-4-turbo-preview is deprecated)
+            model="gpt-4-turbo",  # Stable GPT-4 Turbo model (gpt-4-turbo-preview is deprecated)
             temperature=0.3,
             api_key=api_key
         )
