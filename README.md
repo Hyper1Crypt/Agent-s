@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Lab Trading - AI Financial Analyst
 
 Assistente personalizzato di analisi finanziaria per crypto e macroeconomia, costruito con **LangChain** e **Next.js**.
@@ -197,3 +198,6 @@ MIT License
 
 **Sviluppato con ❤️ per trader e investitori**
 
+=======
+# Agent-s
+>>>>>>> 3b457c79a3280a6b16c47d0363d391600805a20b
